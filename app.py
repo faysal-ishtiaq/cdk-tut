@@ -4,8 +4,9 @@ from aws_cdk import core
 
 from cdk_tut.cdk_tut_stack import CdkTutStack
 
+environment = core.Environment(region="us-east-1")
 
 app = core.App()
-CdkTutStack(app, "cdk-tut")
+CdkTutStack(app, "cdk-tut", env=environment)
 
 app.synth()

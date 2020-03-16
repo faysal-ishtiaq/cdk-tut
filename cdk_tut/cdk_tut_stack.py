@@ -1,4 +1,7 @@
-from aws_cdk import core
+from aws_cdk import (
+    core,
+    aws_lambda as _lambda
+)
 
 
 class CdkTutStack(core.Stack):
@@ -7,3 +10,10 @@ class CdkTutStack(core.Stack):
         super().__init__(scope, id, **kwargs)
 
         # The code that defines your stack goes here
+        lambda_greetings = _lambda.Function(
+            self, 'GreetingsHandler',
+            runtime=_lambda.Runtime.PYTHON_3_7,
+            code=_lambda.Code.asset('lambda'),
+            handler='greetings.greet',
+            memory_size=128
+        )
